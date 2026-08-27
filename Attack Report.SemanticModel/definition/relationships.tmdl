@@ -1,0 +1,4 @@
+relationship 6b9f45fc-069c-99ce-e648-ab956958e060
+	fromColumn: Attacks.date
+	toColumn: Dates.Date
+

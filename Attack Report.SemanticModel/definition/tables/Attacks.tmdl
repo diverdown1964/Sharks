@@ -1,0 +1,200 @@
+table Attacks
+	lineageTag: 1273222d-18f1-475e-8146-63ade92eb427
+
+	measure 'Total Attacks' = Countrows(Attacks)
+		formatString: #,0
+		lineageTag: 96967b67-611d-4916-8cc2-a49be31360d3
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 4c137cf4-eeb2-40e5-803b-8675c9e7d2d8
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: cfe0d7cd-c950-4dc2-8f7e-31ee359561c6
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 95a70f94-4d71-4e5f-81a4-1f91d242ccaf
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 8275aa6c-dc81-47c6-80a9-4e1f15ec4ef1
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 315da422-8c04-4b99-be89-51dbe67c2b3f
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: 4de3d166-cd64-43f4-bbce-cd676bfa8456
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity
+		dataType: string
+		lineageTag: 8bb90d9f-3e86-45cc-a4cb-f6ce647b6bc8
+		summarizeBy: none
+		sourceColumn: activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 6dc0892d-372f-444f-95ca-8a24797ff9f3
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		lineageTag: 8a3b0566-8659-449a-9e3e-f5c57a7e39b9
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d58c04e-d681-4783-ae8a-87d1706a09b9
+		summarizeBy: sum
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column injury
+		dataType: string
+		lineageTag: d8efe90d-e7e6-4af8-8468-25a6bca0435e
+		summarizeBy: none
+		sourceColumn: injury
+
+		annotation SummarizationSetBy = Automatic
+
+	column fatal
+		dataType: string
+		lineageTag: e1325521-85f8-4d47-bbde-15567b6bbff8
+		summarizeBy: none
+		sourceColumn: fatal
+
+		annotation SummarizationSetBy = Automatic
+
+	column time
+		dataType: string
+		lineageTag: 25cb6962-2202-4656-b174-884abc3dbd47
+		summarizeBy: none
+		sourceColumn: time
+
+		annotation SummarizationSetBy = Automatic
+
+	column species
+		dataType: string
+		lineageTag: 4178bb09-f084-4c8f-945e-5c3702abca27
+		summarizeBy: none
+		sourceColumn: species
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		lineageTag: 5d464216-9347-47a7-bcc3-171766cb82a0
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column pdf
+		dataType: string
+		lineageTag: 641473b8-12da-4d85-b24d-a0bfdd37ab2f
+		summarizeBy: none
+		sourceColumn: pdf
+
+		annotation SummarizationSetBy = Automatic
+
+	column href_formula
+		dataType: string
+		lineageTag: 9b40ab9f-8256-402b-bdd1-e9c3ca8ef09c
+		summarizeBy: none
+		sourceColumn: href_formula
+
+		annotation SummarizationSetBy = Automatic
+
+	column href
+		dataType: string
+		lineageTag: 1389a57d-1b8c-4254-871f-0011bc3c2a20
+		summarizeBy: none
+		sourceColumn: href
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_number
+		dataType: string
+		lineageTag: 796af68d-a899-4f65-bee6-ad64b2eb1438
+		summarizeBy: none
+		sourceColumn: case_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_number_1
+		dataType: string
+		lineageTag: fbcb6b77-1b2c-41e1-8844-e3f667e9d840
+		summarizeBy: none
+		sourceColumn: case_number_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column original_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a7d522c-1e8f-46c9-9e63-ec98a746dc27
+		summarizeBy: sum
+		sourceColumn: original_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Attacks = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("n4hpkudlw7tetjb7goluxudy5m-wuyysd66weeejcjvocblw4ovsi.datawarehouse.fabric.microsoft.com", "SharkData"),
+				    dbo_Shark_Attacks_Clean = Source{[Schema="dbo",Item="SharkAttacks_Silver"]}[Data],
+				    #"Sorted Rows" = Table.Sort(dbo_Shark_Attacks_Clean,{{"date", Order.Descending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

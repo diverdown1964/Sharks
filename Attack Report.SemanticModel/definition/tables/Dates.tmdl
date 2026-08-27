@@ -1,0 +1,189 @@
+table Dates
+	lineageTag: ac7e7893-9bbb-4a4d-b929-48e5a7a735c7
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 6071c357-d0b1-444c-8b3b-f21867ec48e1
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c376bf6-497c-45ba-b28a-296707bcde4f
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: d892ce49-2564-4f0f-9f78-29e07d046487
+		summarizeBy: none
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 5e9ecbce-2e21-40b9-a71a-29928028dd74
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name_short
+		dataType: string
+		lineageTag: 85f55ec4-6ff1-494b-b3d8-543e2ba0f8ce
+		summarizeBy: none
+		sourceColumn: month_name_short
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cb21d3a-26f7-48a5-be19-a64214f7488f
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: de1f593c-f464-43c9-96b9-d3db113a37b7
+		summarizeBy: none
+		sourceColumn: day_of_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 3b029298-deaf-460a-b6cd-677f46821618
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week_name_short
+		dataType: string
+		lineageTag: f5221f0d-9729-4b9a-a41c-92ff58431484
+		summarizeBy: none
+		sourceColumn: day_of_week_name_short
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 94409d5f-5868-447a-af5b-b641529db4ef
+		summarizeBy: none
+		sourceColumn: week_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 07da1f68-aa42-480c-a68b-5730293071c5
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: b4623e2e-2d55-4a39-825b-dd7207a563bd
+		summarizeBy: none
+		sourceColumn: day_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: 6260a67e-5257-4d16-84e7-845ed8d04bf3
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 41cc79cd-46db-49cb-a596-59cd1ee28268
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: dc6e5704-a4dc-4d52-9e49-a605ecb0a2b9
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month_int
+		dataType: int64
+		formatString: 0
+		lineageTag: 254be3da-3dcc-46f3-944c-94e8f1a0eca5
+		summarizeBy: none
+		sourceColumn: year_month_int
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: b37f1a2a-3ffd-4080-9a77-99c371a916ad
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c769f81-1549-4e44-9b66-f803ea59238d
+		summarizeBy: none
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ce06722-75b4-4081-b3dd-643b93c73db2
+		summarizeBy: none
+		sourceColumn: fiscal_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dates = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("n4hpkudlw7tetjb7goluxudy5m-wuyysd66weeejcjvocblw4ovsi.datawarehouse.fabric.microsoft.com", "SharkData"),
+				    dbo_Shark_Attacks_Clean = Source{[Schema="dbo",Item="calendar"]}[Data],
+				    #"Sorted Rows" = Table.Sort(dbo_Shark_Attacks_Clean,{{"date", Order.Descending}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Sorted Rows",{{"month_name", "Month"}, {"year", "Year"}, {"date", "Date"}, {"day_of_month", "Day"}, {"day_of_week_name", "Day Name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

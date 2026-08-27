@@ -1,0 +1,196 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.7.0/schema.json",
+  "name": "efc89fab8b5a57cd2c94",
+  "position": {
+    "x": 0,
+    "y": 477.82198952879583,
+    "z": 13000,
+    "height": 241.92670157068062,
+    "width": 1280,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dates"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Dates.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "country"
+                }
+              },
+              "queryRef": "Attacks.country",
+              "nativeQueryRef": "country"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "location"
+                }
+              },
+              "queryRef": "Attacks.location",
+              "nativeQueryRef": "location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "fatal"
+                }
+              },
+              "queryRef": "Attacks.fatal",
+              "nativeQueryRef": "fatal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "species"
+                }
+              },
+              "queryRef": "Attacks.species",
+              "nativeQueryRef": "species"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "sex"
+                }
+              },
+              "queryRef": "Attacks.sex",
+              "nativeQueryRef": "sex"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "age"
+                }
+              },
+              "queryRef": "Sum(Attacks.age)",
+              "nativeQueryRef": "age"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "activity"
+                }
+              },
+              "queryRef": "Attacks.activity",
+              "nativeQueryRef": "activity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "injury"
+                }
+              },
+              "queryRef": "Attacks.injury",
+              "nativeQueryRef": "injury"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Attacks"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "Attacks.type",
+              "nativeQueryRef": "type"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dates"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BoldHeader'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

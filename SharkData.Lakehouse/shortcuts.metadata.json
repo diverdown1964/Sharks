@@ -1,0 +1,14 @@
+[
+  {
+    "name": "calendar",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/calendar",
+        "itemId": "5dbbdead-9204-47fc-99b9-10d8f1c27987",
+        "workspaceId": "c8a849d6-6c67-4393-91ac-aa4788238c7a"
+      }
+    }
+  }
+]
